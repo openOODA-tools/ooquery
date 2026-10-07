@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ooquery-bin
+_pkgname=ooquery
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Executes relational queries against local CSV, JSON, and Parquet data files."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ooquery"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ooquery')
+conflicts=('ooquery')
+source_x86_64=("${url}/releases/download/v${pkgver}/ooquery-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ooquery-linux-x86_64" "${pkgdir}/usr/bin/ooquery"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ooquery-uninstall"
+}
